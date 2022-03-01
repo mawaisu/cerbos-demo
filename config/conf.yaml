@@ -1,0 +1,22 @@
+---
+server:
+  httpListenAddr: ":3592" 
+storage:
+  driver: "disk" # Valid values are "disk" or "git"
+  disk: # Only required if "driver" is "disk"
+    directory: /policies
+    readOnly: true # Set to false if you want to write new policies to disk through
+    watchForChanges: true
+audit:
+  enabled: true
+  backend: local
+  local:
+    storagePath: /logs
+    retentionPeriod: 168h
+    advanced:
+      bufferSize: 16 # Size of the memory buffer. Increasing this will use more memory and the chances of losing data during a crash.
+      maxBatchSize: 16 # Write batch size. If your records are small, increasing this will reduce disk IO.
+      flushInterval: 30s # Time to keep records in memory before committing.
+      gcInterval: 15m # How often the garbage collector runs to remove old entries from the log.
+engine:
+  defaultPolicyVersion: "default" #stagging,dev,production
