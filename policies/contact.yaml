@@ -6,7 +6,6 @@ resourcePolicy:
   rules:
   - actions: ["read", "list"]
     roles:
-      - admin
       - user
     effect: EFFECT_ALLOW
 
